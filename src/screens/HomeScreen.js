@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatGrid } from 'react-native-super-grid';
 
+import useResponsiveValue from '../useResponsiveValue';
+
 const items = [
   { name: 'TURQUOISE', code: '#1abc9c' },
   { name: 'EMERALD', code: '#2ecc71' },
@@ -28,10 +30,17 @@ const items = [
 
 export default function HomeScreen() {
 
+  const itemDimension = useResponsiveValue({
+    md: 180,
+    lg: 240,
+    xl: 300,
+    default: 150
+  });
+
   const renderItem = ({ item }) => (
     <View style={[styles.item, {
       backgroundColor: item.code,
-      height: 150
+      height: itemDimension
     }]}>
       <Text style={styles.itemName}>{item.name}</Text>
       <Text style={styles.itemCode}>{item.code}</Text>
@@ -42,7 +51,7 @@ export default function HomeScreen() {
     <SafeAreaView>
       <FlatGrid
         data={items}
-        itemDimension={150}
+        itemDimension={itemDimension}
         keyExtractor={item => item.code}
         renderItem={renderItem}
       />
