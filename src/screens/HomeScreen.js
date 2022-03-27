@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatGrid } from 'react-native-super-grid';
 
-import useResponsiveValue from '../useResponsiveValue';
+import { MediaQuery, StyleSheet, useResponsiveStyleSheet } from '../style';
 
 const items = [
   { name: 'TURQUOISE', code: '#1abc9c' },
@@ -29,18 +29,11 @@ const items = [
 ];
 
 export default function HomeScreen() {
-
-  const itemDimension = useResponsiveValue({
-    md: 180,
-    lg: 240,
-    xl: 300,
-    default: 150
-  });
+  const responsiveStyles = useResponsiveStyleSheet(styles);
 
   const renderItem = ({ item }) => (
-    <View style={[styles.item, {
-      backgroundColor: item.code,
-      height: itemDimension
+    <View style={[responsiveStyles.item, {
+      backgroundColor: item.code
     }]}>
       <Text style={styles.itemName}>{item.name}</Text>
       <Text style={styles.itemCode}>{item.code}</Text>
@@ -51,7 +44,7 @@ export default function HomeScreen() {
     <SafeAreaView>
       <FlatGrid
         data={items}
-        itemDimension={itemDimension}
+        itemDimension={responsiveStyles.item.height}
         keyExtractor={item => item.code}
         renderItem={renderItem}
       />
@@ -62,8 +55,18 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   item: {
     borderRadius: 5,
+    height: 150,
     justifyContent: 'flex-end',
-    padding: 10
+    padding: 10,
+    [MediaQuery.between('sm', 'lg')]: {
+      height: 180
+    },
+    [MediaQuery.only('lg')]: {
+      height: 240
+    },
+    [MediaQuery.only('xl')]: {
+      height: 300
+    }
   },
   itemCode: {
     color: '#fff',

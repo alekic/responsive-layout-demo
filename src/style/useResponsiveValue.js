@@ -1,12 +1,5 @@
 import { useWindowDimensions } from 'react-native';
-
-export const Breakpoint = Object.freeze({
-  XS: 0,
-  SM: 600,
-  MD: 900,
-  LG: 1200,
-  XL: 1536
-});
+import Breakpoint from './Breakpoint';
 
 export default function useResponsiveValue(config) {
   const { width } = useWindowDimensions();

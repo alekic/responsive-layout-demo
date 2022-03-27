@@ -1,11 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { Dimensions } from 'react-native';
 
-import useResponsiveValue, { Breakpoint } from './useResponsiveValue';
-
-function mockWindowDimensions({ height, width }) {
-  Dimensions.get = jest.fn(() => ({ height, width }));
-}
+import Breakpoint from './Breakpoint';
+import { mockWindowDimensions } from './mockWindowDimensions';
+import useResponsiveValue from './useResponsiveValue';
 
 describe('useResponsiveValue', () => {
 
