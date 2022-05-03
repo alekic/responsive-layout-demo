@@ -1,7 +1,7 @@
 import { useWindowDimensions } from 'react-native';
 import Breakpoint from './Breakpoint';
 
-export default function useResponsiveValue(config) {
+export default function useBreakpointValue(config) {
   const { width } = useWindowDimensions();
 
   function valueOrDefault(key) {

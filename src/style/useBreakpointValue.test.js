@@ -2,9 +2,9 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import Breakpoint from './Breakpoint';
 import { mockWindowDimensions } from './mockWindowDimensions';
-import useResponsiveValue from './useResponsiveValue';
+import useBreakpointValue from './useBreakpointValue';
 
-describe('useResponsiveValue', () => {
+describe('useBreakpointValue', () => {
 
   const config = {
     xs: 100,
@@ -18,7 +18,7 @@ describe('useResponsiveValue', () => {
   it('should return xs value on extra small screens', () => {
     mockWindowDimensions({ width: Breakpoint.XS });
 
-    const { result } = renderHook(() => useResponsiveValue(config));
+    const { result } = renderHook(() => useBreakpointValue(config));
 
     expect(result.current).toBe(config.xs);
   });
@@ -26,7 +26,7 @@ describe('useResponsiveValue', () => {
   it('should return sm value on small screens', () => {
     mockWindowDimensions({ width: Breakpoint.SM });
 
-    const { result } = renderHook(() => useResponsiveValue(config));
+    const { result } = renderHook(() => useBreakpointValue(config));
 
     expect(result.current).toBe(config.sm);
   });
@@ -34,7 +34,7 @@ describe('useResponsiveValue', () => {
   it('should return md value on medium screens', () => {
     mockWindowDimensions({ width: Breakpoint.MD });
 
-    const { result } = renderHook(() => useResponsiveValue(config));
+    const { result } = renderHook(() => useBreakpointValue(config));
 
     expect(result.current).toBe(config.md);
   });
@@ -42,7 +42,7 @@ describe('useResponsiveValue', () => {
   it('should return lg value on large screens', () => {
     mockWindowDimensions({ width: Breakpoint.LG });
 
-    const { result } = renderHook(() => useResponsiveValue(config));
+    const { result } = renderHook(() => useBreakpointValue(config));
 
     expect(result.current).toBe(config.lg);
   });
@@ -50,7 +50,7 @@ describe('useResponsiveValue', () => {
   it('should return xl value on extra large screens', () => {
     mockWindowDimensions({ width: Breakpoint.XL });
 
-    const { result } = renderHook(() => useResponsiveValue(config));
+    const { result } = renderHook(() => useBreakpointValue(config));
 
     expect(result.current).toBe(config.xl);
   });
@@ -58,7 +58,7 @@ describe('useResponsiveValue', () => {
   it('should return default value', () => {
     mockWindowDimensions({ width: Breakpoint.MD });
 
-    const { result } = renderHook(() => useResponsiveValue({
+    const { result } = renderHook(() => useBreakpointValue({
       xs: 'blue',
       default: 'red'
     }));
